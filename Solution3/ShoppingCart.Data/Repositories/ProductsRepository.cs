@@ -20,6 +20,7 @@ namespace ShoppingCart.Data.Repositories
          
         public Guid AddProduct(Product p)
         {
+            //ShoppingCartDbContext context = new ShoppingCartDbContext();
             _context.Products.Add(p);
             _context.SaveChanges();
             return p.Id;
@@ -27,18 +28,21 @@ namespace ShoppingCart.Data.Repositories
 
         public void DeleteProduct(Product p)
         {
+            //ShoppingCartDbContext context = new ShoppingCartDbContext();
             _context.Products.Remove(p);
             _context.SaveChanges(); //this will save permanently into the db
         }
 
         public Product GetProduct(Guid id)
         {
+            //ShoppingCartDbContext context = new ShoppingCartDbContext();
             //single or default will return ONE product! or null
             return _context.Products.SingleOrDefault(x => x.Id == id);
         }
 
         public IQueryable<Product> GetProducts()
         {
+            //ShoppingCartDbContext context = new ShoppingCartDbContext();
             return _context.Products;
         }
     }
