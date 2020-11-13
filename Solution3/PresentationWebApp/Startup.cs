@@ -33,9 +33,7 @@ namespace PresentationWebApp
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDbContext<ShoppingCartDbContext>(options =>
-               options.UseSqlServer(
-                   Configuration.GetConnectionString("DefaultConnection")));
+          
 
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -43,7 +41,8 @@ namespace PresentationWebApp
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            DependencyContainer.RegisterServices(services);
+            DependencyContainer.RegisterServices(services
+             ,  Configuration.GetConnectionString("DefaultConnection"));
 
 
         }

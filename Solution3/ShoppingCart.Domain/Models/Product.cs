@@ -9,6 +9,8 @@ using System.Text;
 
 namespace ShoppingCart.Domain.Models
 {
+    //once you have updated your product with new columns >>>>>>>> ctrl + shift + b
+
     public class Product
     {
         [Key]
@@ -24,6 +26,9 @@ namespace ShoppingCart.Domain.Models
         public string Description { get; set; }
         [Required]
         public Category Category { get; set; }
+
+        public string ImageUrl { get; set; }
+
 
     }
 }

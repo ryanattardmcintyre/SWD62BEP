@@ -19,7 +19,6 @@ namespace ShoppingCart.Application.Services
 
         public IQueryable<ProductViewModel> GetProducts()
         {
-
             //to be implemented using AutoMapper
             var list = from p in _productsRepo.GetProducts()
                        select new ProductViewModel()
@@ -28,14 +27,14 @@ namespace ShoppingCart.Application.Services
                            Description = p.Description,
                            Name = p.Name,
                            Price = p.Price,
-                           Category = new CategoryViewModel() { Id = p.Category.Id, Name = p.Category.Name }
+                           Category = new CategoryViewModel() { Id = p.Category.Id, Name = p.Category.Name },
+                           ImageUrl = p.ImageUrl
                        };
             return list;
         }
 
         public IQueryable<ProductViewModel> GetProducts(int category)
         {
-
             var list = from p in _productsRepo.GetProducts().Where(x => x.Category.Id == category)
                        select new ProductViewModel()
                        {
@@ -43,7 +42,8 @@ namespace ShoppingCart.Application.Services
                            Description = p.Description,
                            Name = p.Name,
                            Price = p.Price,
-                           Category = new CategoryViewModel() { Id = p.Category.Id, Name = p.Category.Name }
+                           Category = new CategoryViewModel() { Id = p.Category.Id, Name = p.Category.Name },
+                           ImageUrl = p.ImageUrl
                        };
             return list;
         }
