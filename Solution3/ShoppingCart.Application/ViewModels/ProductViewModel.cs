@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace ShoppingCart.Application.ViewModels
@@ -8,6 +9,7 @@ namespace ShoppingCart.Application.ViewModels
     {
         public Guid Id { get; set; } // C581B912-DF44-434B-8AD4-5343FC087507
             
+        [Required(ErrorMessage ="Please input a name")]
         public string Name { get; set; }
      
         public double Price { get; set; }

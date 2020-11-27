@@ -11,9 +11,11 @@ namespace PresentationWebApp.Controllers
     public class ProductsController : Controller
     {
         private readonly IProductsService _productsService;
-        public ProductsController(IProductsService productsService)
+        private readonly ICategoriesService _categoriesService;
+        public ProductsController(IProductsService productsService, ICategoriesService categoriesService)
         {
             _productsService = productsService;
+            _categoriesService = categoriesService;
         }
 
         public IActionResult Index()
@@ -27,6 +29,45 @@ namespace PresentationWebApp.Controllers
             var p = _productsService.GetProduct(id);
             return View( p);
         }
+
+        //the engine will load a page with empty fields
+        [HttpGet]
+        public IActionResult Create()
+        {
+            //fetch a list of categories
+            var listOfCategeories = _categoriesService.GetCategories();
+
+            //we pass the categories to the page
+            ViewBag.Categories = listOfCategeories;
+
+            return View();
+        }
+
+        //here details input by the user will be received
+        [HttpPost]
+        public IActionResult Create(ProductViewModel data)
+        {
+            try
+            {
+                _productsService.AddProduct(data);
+
+                ViewData["feedback"] = "Product was added successfully";
+            }
+            catch (Exception ex)
+            {
+                //log error
+                ViewData["warning"] = "Product was not added!";
+            }
+
+           var listOfCategeories = _categoriesService.GetCategories();
+           ViewBag.Categories = listOfCategeories;
+            return View(data);
+        
+        }
+
+       
+
+
 
     }
 }
