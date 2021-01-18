@@ -9,7 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace ShoppingCart.Data.Repositories
-{
+{ 
     public class ProductsRepository : IProductsRepository
     {
         ShoppingCartDbContext _context;
